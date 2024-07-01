@@ -1,4 +1,4 @@
-import { CommandGroups } from "..";
+import { CommandGroups } from "./interface";
 
 // source of truth, taken from https://github.com/rxhanson/RectanglePro-Community?tab=readme-ov-file#programmatically-triggering-window-sizes--positions
 export const actions = [
@@ -114,7 +114,71 @@ export const actions = [
 
 export type RectangleProAction = (typeof actions)[number];
 
-export const commandGroups = {
+export const commandGroups: CommandGroups<RectangleProAction> = {
+  fill: {
+    title: "Fill",
+    items: [
+      {
+        name: "fill-left",
+        title: "Fill Left",
+        icon: "window-positions/fillLeftTemplate.png",
+        description: "Fill the left side of the screen with the focused window",
+      },
+      {
+        name: "fill-right",
+        title: "Fill Right",
+        icon: "window-positions/fillRightTemplate.png",
+        description: "Fill the right side of the screen with the focused window",
+      },
+      {
+        name: "fill-top-left",
+        title: "Fill Top Left",
+        icon: "window-positions/fillCornersTLTemplate.png",
+        description: "Fill the top-left corner with the focused window",
+      },
+      {
+        name: "fill-top-right",
+        title: "Fill Top Right",
+        icon: "window-positions/fillCornersTRTemplate.png",
+        description: "Fill the top-right corner with the focused window",
+      },
+      {
+        name: "fill-bottom-left",
+        title: "Fill Bottom Left",
+        icon: "window-positions/fillCornersBLTemplate.png",
+        description: "Fill the bottom-left corner with the focused window",
+      },
+      {
+        name: "fill-bottom-right",
+        title: "Fill Bottom Right",
+        icon: "window-positions/fillCornersBRTemplate.png",
+        description: "Fill the bottom-right corner with the focused window",
+      },
+    ],
+  },
+  maximize: {
+    title: "Maximize",
+    items: [
+      {
+        name: "maximize",
+        title: "Maximize",
+        icon: "window-positions/maximizeTemplate.png",
+        description: "Maximize the focused window to fill the screen",
+      },
+      {
+        name: "almost-maximize",
+        title: "Almost Maximize",
+        icon: "window-positions/almostMaximizeTemplate.png",
+        description: "Almost maximize the focused window",
+      },
+      {
+        name: "maximize-height",
+        title: "Maximize Height",
+        icon: "window-positions/maximizeHeightTemplate.png",
+        description: "Maximize the height of the focused window",
+      },
+    ],
+  },
   halves: {
     title: "Halves",
     items: [
@@ -150,6 +214,35 @@ export const commandGroups = {
       },
     ],
   },
+  corners: {
+    title: "Corners",
+    items: [
+      {
+        name: "top-left",
+        title: "Top Left",
+        icon: "window-positions/topLeftTemplate.png",
+        description: "Move the focused window to the top-left corner",
+      },
+      {
+        name: "top-right",
+        title: "Top Right",
+        icon: "window-positions/topRightTemplate.png",
+        description: "Move the focused window to the top-right corner",
+      },
+      {
+        name: "bottom-left",
+        title: "Bottom Left",
+        icon: "window-positions/bottomLeftTemplate.png",
+        description: "Move the focused window to the bottom-left corner",
+      },
+      {
+        name: "bottom-right",
+        title: "Bottom Right",
+        icon: "window-positions/bottomRightTemplate.png",
+        description: "Move the focused window to the bottom-right corner",
+      },
+    ],
+  },
   thirds: {
     title: "Thirds",
     items: [
@@ -158,6 +251,12 @@ export const commandGroups = {
         title: "First Third",
         icon: "window-positions/firstThirdTemplate.png",
         description: "Resize the focused window to the first third of the screen",
+      },
+      {
+        name: "center-third",
+        title: "Center Third",
+        icon: "window-positions/centerThirdTemplate.png",
+        description: "Resize the focused window to the center third of the screen",
       },
       {
         name: "last-third",
@@ -172,10 +271,10 @@ export const commandGroups = {
         description: "Resize the focused window to the first two-thirds of the screen",
       },
       {
-        name: "center-third",
-        title: "Center Third",
-        icon: "window-positions/centerThirdTemplate.png",
-        description: "Resize the focused window to the center third of the screen",
+        name: "center-two-thirds",
+        title: "Center Two Thirds",
+        icon: "window-positions/centerTwoThirdsTemplate.png",
+        description: "Resize the focused window to the center two-thirds of the screen",
       },
       {
         name: "last-two-thirds",
@@ -183,34 +282,33 @@ export const commandGroups = {
         icon: "window-positions/lastTwoThirdsTemplate.png",
         description: "Resize the focused window to the last two-thirds of the screen",
       },
-      {
-        name: "center-two-thirds",
-        title: "Center Two Thirds",
-        icon: "window-positions/centerTwoThirdsTemplate.png",
-        description: "Resize the focused window to the center two-thirds of the screen",
-      },
+    ],
+  },
+  cornerTwoThirds: {
+    title: "Corner Two Thirds",
+    items: [
       {
         name: "top-left-third",
         title: "Top Left Two Thirds",
-        icon: "",
+        icon: "window-positions/tlCornerTwoThirdsTemplate.png",
         description: "Resize the focused window to the top-left two-thirds of the screen",
       },
       {
         name: "top-right-third",
         title: "Top Right Two Thirds",
-        icon: "",
+        icon: "window-positions/trCornerTwoThirdsTemplate.png",
         description: "Resize the focused window to the top-right two-thirds of the screen",
       },
       {
         name: "bottom-left-third",
         title: "Bottom Left Two Thirds",
-        icon: "",
+        icon: "window-positions/blCornerTwoThirdsTemplate.png",
         description: "Resize the focused window to the bottom-left two-thirds of the screen",
       },
       {
         name: "bottom-right-third",
         title: "Bottom Right Two Thirds",
-        icon: "",
+        icon: "window-positions/brCornerTwoThirdsTemplate.png",
         description: "Resize the focused window to the bottom-right two-thirds of the screen",
       },
     ],
@@ -309,6 +407,59 @@ export const commandGroups = {
       },
     ],
   },
+  eighths: {
+    title: "Eighths",
+    items: [
+      {
+        name: "top-left-eighth",
+        title: "Top Left Eighth",
+        icon: "window-positions/tlEighthTemplate.png",
+        description: "Resize the focused window to the top-left eighth of the screen",
+      },
+      {
+        name: "top-center-left-eighth",
+        title: "Top Center Left Eighth",
+        icon: "window-positions/ctlEighthTemplate.png",
+        description: "Resize the focused window to the top-center-left eighth of the screen",
+      },
+      {
+        name: "top-center-right-eighth",
+        title: "Top Center Right Eighth",
+        icon: "window-positions/ctrEighthTemplate.png",
+        description: "Resize the focused window to the top-center-right eighth of the screen",
+      },
+      {
+        name: "top-right-eighth",
+        title: "Top Right Eighth",
+        icon: "window-positions/trEighthTemplate.png",
+        description: "Resize the focused window to the top-right eighth of the screen",
+      },
+      {
+        name: "bottom-left-eighth",
+        title: "Bottom Left Eighth",
+        icon: "window-positions/blEighthTemplate.png",
+        description: "Resize the focused window to the bottom-left eighth of the screen",
+      },
+      {
+        name: "bottom-center-left-eighth",
+        title: "Bottom Center Left Eighth",
+        icon: "window-positions/cblEighthTemplate.png",
+        description: "Resize the focused window to the bottom-center-left eighth of the screen",
+      },
+      {
+        name: "bottom-center-right-eighth",
+        title: "Bottom Center Right Eighth",
+        icon: "window-positions/cbrEighthTemplate.png",
+        description: "Resize the focused window to the bottom-center-right eighth of the screen",
+      },
+      {
+        name: "bottom-right-eighth",
+        title: "Bottom Right Eighth",
+        icon: "window-positions/brEighthTemplate.png",
+        description: "Resize the focused window to the bottom-right eighth of the screen",
+      },
+    ],
+  },
   ninths: {
     title: "Ninths",
     items: [
@@ -368,109 +519,9 @@ export const commandGroups = {
       },
     ],
   },
-  eighths: {
-    title: "Eighths",
+  display: {
+    title: "Display",
     items: [
-      {
-        name: "top-left-eighth",
-        title: "Top Left Eighth",
-        icon: "window-positions/tlEighthTemplate.png",
-        description: "Resize the focused window to the top-left eighth of the screen",
-      },
-      {
-        name: "top-center-left-eighth",
-        title: "Top Center Left Eighth",
-        icon: "window-positions/ctlEighthTemplate.png",
-        description: "Resize the focused window to the top-center-left eighth of the screen",
-      },
-      {
-        name: "top-center-right-eighth",
-        title: "Top Center Right Eighth",
-        icon: "window-positions/ctrEighthTemplate.png",
-        description: "Resize the focused window to the top-center-right eighth of the screen",
-      },
-      {
-        name: "top-right-eighth",
-        title: "Top Right Eighth",
-        icon: "window-positions/trEighthTemplate.png",
-        description: "Resize the focused window to the top-right eighth of the screen",
-      },
-      {
-        name: "bottom-left-eighth",
-        title: "Bottom Left Eighth",
-        icon: "window-positions/blEighthTemplate.png",
-        description: "Resize the focused window to the bottom-left eighth of the screen",
-      },
-      {
-        name: "bottom-center-left-eighth",
-        title: "Bottom Center Left Eighth",
-        icon: "window-positions/cblEighthTemplate.png",
-        description: "Resize the focused window to the bottom-center-left eighth of the screen",
-      },
-      {
-        name: "bottom-center-right-eighth",
-        title: "Bottom Center Right Eighth",
-        icon: "window-positions/cbrEighthTemplate.png",
-        description: "Resize the focused window to the bottom-center-right eighth of the screen",
-      },
-      {
-        name: "bottom-right-eighth",
-        title: "Bottom Right Eighth",
-        icon: "window-positions/brEighthTemplate.png",
-        description: "Resize the focused window to the bottom-right eighth of the screen",
-      },
-    ],
-  },
-  snap: {
-    title: "Snap",
-    items: [
-      {
-        name: "snap-bottom-left",
-        title: "Snap Bottom Left",
-        icon: "window-positions/snapBottomLeftTemplate.png",
-        description: "Snap the focused window to the bottom-left corner",
-      },
-      {
-        name: "snap-bottom-right",
-        title: "Snap Bottom Right",
-        icon: "window-positions/snapBottomRightTemplate.png",
-        description: "Snap the focused window to the bottom-right corner",
-      },
-      {
-        name: "snap-top-left",
-        title: "Snap Top Left",
-        icon: "window-positions/snapTopLeftTemplate.png",
-        description: "Snap the focused window to the top-left corner",
-      },
-      {
-        name: "snap-top-right",
-        title: "Snap Top Right",
-        icon: "window-positions/snapTopRightTemplate.png",
-        description: "Snap the focused window to the top-right corner",
-      },
-    ],
-  },
-  other: {
-    title: "Other",
-    items: [
-      {
-        name: "maximize",
-        title: "Maximize",
-        icon: "window-positions/maximizeTemplate.png",
-        description: "Maximize the focused window to fill the screen",
-      },
-      {
-        name: "almost-maximize",
-        title: "Almost Maximize",
-        icon: "window-positions/almostMaximizeTemplate.png",
-        description: "Almost maximize the focused window",
-      },
-      {
-        name: "maximize-height",
-        title: "Maximize Height",
-        icon: "window-positions/maximizeHeightTemplate.png",
-        description: "Maximize the height of the focused window",
-      },
       {
         name: "previous-display",
         title: "Previous Display",
@@ -484,209 +535,87 @@ export const commandGroups = {
         description: "Move the focused window to the next display",
       },
       {
-        name: "larger",
-        title: "Make Larger",
-        icon: "window-positions/makeLargerTemplate.png",
-        description: "Increase the size of the focused window",
+        name: "next-display-ratio",
+        title: "Next Display Centered",
+        icon: "window-positions/nextDisplayCenterTemplate.png",
+        description: "Move the focused window to the next display, keeping ratio",
       },
       {
-        name: "smaller",
-        title: "Make Smaller",
-        icon: "window-positions/makeSmallerTemplate.png",
-        description: "Decrease the size of the focused window",
-      },
-      {
-        name: "center",
-        title: "Center",
-        icon: "window-positions/centerTemplate.png",
-        description: "Center the focused window on the screen",
-      },
-      {
-        name: "bottom-left",
-        title: "Bottom Left",
-        icon: "window-positions/bottomLeftTemplate.png",
-        description: "Move the focused window to the bottom-left corner",
-      },
-      {
-        name: "bottom-right",
-        title: "Bottom Right",
-        icon: "window-positions/bottomRightTemplate.png",
-        description: "Move the focused window to the bottom-right corner",
-      },
-      {
-        name: "top-left",
-        title: "Top Left",
-        icon: "window-positions/topLeftTemplate.png",
-        description: "Move the focused window to the top-left corner",
-      },
-      {
-        name: "top-right",
-        title: "Top Right",
-        icon: "window-positions/topRightTemplate.png",
-        description: "Move the focused window to the top-right corner",
-      },
-      {
-        name: "restore",
-        title: "Restore",
-        icon: "window-positions/restoreTemplate.png",
-        description: "Restore the focused window to its previous size",
-      },
-      {
-        name: "move-left",
-        title: "Move Left",
-        icon: "window-positions/moveLeftTemplate.png",
-        description: "Move the focused window to the left",
-      },
-      {
-        name: "move-right",
-        title: "Move Right",
-        icon: "window-positions/moveRightTemplate.png",
-        description: "Move the focused window to the right",
-      },
-      {
-        name: "move-up",
-        title: "Move Up",
-        icon: "window-positions/moveUpTemplate.png",
-        description: "Move the focused window up",
-      },
-      {
-        name: "move-down",
-        title: "Move Down",
-        icon: "window-positions/moveDownTemplate.png",
-        description: "Move the focused window down",
-      },
-      {
-        name: "fill-left",
-        title: "Fill Left",
-        icon: "window-positions/fillLeftTemplate.png",
-        description: "Fill the left side of the screen with the focused window",
-      },
-      {
-        name: "fill-right",
-        title: "Fill Right",
-        icon: "window-positions/fillRightTemplate.png",
-        description: "Fill the right side of the screen with the focused window",
-      },
-      {
-        name: "fullscreen",
-        title: "Fullscreen",
-        icon: "window-positions/maximizeTemplate.png",
-        description: "Maximize the focused window to fullscreen",
-      },
-      {
-        name: "close",
-        title: "Close",
-        icon: "",
-        description: "Close the focused window",
-      },
-      {
-        name: "minimize",
-        title: "Minimize",
-        icon: "",
-        description: "Minimize the focused window",
-      },
-      {
-        name: "quit-app",
-        title: "Quit App",
-        icon: "",
-        description: "Quit the application",
-      },
-      {
-        name: "hide-app",
-        title: "Hide App",
-        icon: "",
-        description: "Hide the application",
-      },
-      {
-        name: "cascade-all",
-        title: "Cascade All",
-        icon: "",
-        description: "Cascade all windows",
-      },
-      {
-        name: "cascade-app",
-        title: "Cascade App",
-        icon: "",
-        description: "Cascade application windows",
-      },
-      {
-        name: "tile-2x2",
-        title: "Tile 2x2",
-        icon: "",
-        description: "Tile windows in a 2x2 grid",
-      },
-      {
-        name: "tile-2x3",
-        title: "Tile 2x3",
-        icon: "",
-        description: "Tile windows in a 2x3 grid",
-      },
-      {
-        name: "reveal-desktop-edge",
-        title: "Reveal Desktop Edge",
-        icon: "",
-        description: "Reveal the desktop edge",
-      },
-      {
-        name: "app-next-display",
-        title: "App Next Display",
-        icon: "window-positions/nextDisplayTemplate.png",
-        description: "Move the application to the next display",
-      },
-      {
-        name: "app-prev-display",
-        title: "App Previous Display",
-        icon: "window-positions/prevDisplayTemplate.png",
-        description: "Move the application to the previous display",
-      },
-      {
-        name: "app-left-half",
-        title: "App Left Half",
-        icon: "window-positions/leftHalfTemplate.png",
-        description: "Resize the application to the left half of the screen",
-      },
-      {
-        name: "app-right-half",
-        title: "App Right Half",
-        icon: "window-positions/rightHalfTemplate.png",
-        description: "Resize the application to the right half of the screen",
-      },
-      {
-        name: "fill-bottom-left",
-        title: "Fill Bottom Left",
-        icon: "window-positions/fillCornersBLTemplate.png",
-        description: "Fill the bottom-left corner with the focused window",
-      },
-      {
-        name: "fill-bottom-right",
-        title: "Fill Bottom Right",
-        icon: "window-positions/fillCornersBRTemplate.png",
-        description: "Fill the bottom-right corner with the focused window",
-      },
-      {
-        name: "fill-top-left",
-        title: "Fill Top Left",
-        icon: "window-positions/fillCornersTLTemplate.png",
-        description: "Fill the top-left corner with the focused window",
-      },
-      {
-        name: "fill-top-right",
-        title: "Fill Top Right",
-        icon: "window-positions/fillCornersTRTemplate.png",
-        description: "Fill the top-right corner with the focused window",
-      },
-      {
-        name: "last",
-        title: "Last",
-        icon: "window-positions/lastTemplate.png",
-        description: "Select the last window",
+        name: "prev-display-ratio",
+        title: "Previous Display Centered",
+        icon: "window-positions/prevDisplayCenterTemplate.png",
+        description: "Move the focused window to the previous display, keeping ratio",
       },
       {
         name: "next-space",
         title: "Next Space",
-        icon: "window-positions/nextSpaceTemplate.png",
+        icon: "window-positions/moveSpaceLeftLargerTemplate.png",
         description: "Move the focused window to the next space",
       },
+      {
+        name: "prev-space",
+        title: "Previous Space",
+        icon: "window-positions/moveSpaceRightLargerTemplate.png",
+        description: "Move the focused window to the previous space",
+      },
+    ],
+  },
+  snap: {
+    title: "Snap",
+    items: [
+      {
+        name: "move-left",
+        title: "Snap Left",
+        icon: "window-positions/moveLeftTemplate.png",
+        description: "Snap the focused window to the left",
+      },
+      {
+        name: "move-right",
+        title: "Snap Right",
+        icon: "window-positions/moveRightTemplate.png",
+        description: "Snap the focused window to the right",
+      },
+      {
+        name: "move-up",
+        title: "Snap Up",
+        icon: "window-positions/moveUpTemplate.png",
+        description: "Snap the focused window up",
+      },
+      {
+        name: "move-down",
+        title: "Snap Down",
+        icon: "window-positions/moveDownTemplate.png",
+        description: "Snap the focused window down",
+      },
+      {
+        name: "snap-top-left",
+        title: "Snap Top Left",
+        icon: "window-positions/snapTopLeftTemplate.png",
+        description: "Snap the focused window to the top-left corner",
+      },
+      {
+        name: "snap-top-right",
+        title: "Snap Top Right",
+        icon: "window-positions/snapTopRightTemplate.png",
+        description: "Snap the focused window to the top-right corner",
+      },
+      {
+        name: "snap-bottom-left",
+        title: "Snap Bottom Left",
+        icon: "window-positions/snapBottomLeftTemplate.png",
+        description: "Snap the focused window to the bottom-left corner",
+      },
+      {
+        name: "snap-bottom-right",
+        title: "Snap Bottom Right",
+        icon: "window-positions/snapBottomRightTemplate.png",
+        description: "Snap the focused window to the bottom-right corner",
+      },
+    ],
+  },
+  nudge: {
+    title: "Nudge",
+    items: [
       {
         name: "nudge-left",
         title: "Nudge Left",
@@ -711,11 +640,33 @@ export const commandGroups = {
         icon: "window-positions/nudgeDownTemplate.png",
         description: "Nudge the focused window down",
       },
+    ],
+  },
+  size: {
+    title: "Size",
+    items: [
       {
-        name: "prev-space",
-        title: "Previous Space",
-        icon: "window-positions/prevSpaceTemplate.png",
-        description: "Move the focused window to the previous space",
+        name: "larger",
+        title: "Make Larger",
+        icon: "window-positions/makeLargerTemplate.png",
+        description: "Increase the size of the focused window",
+      },
+      {
+        name: "smaller",
+        title: "Make Smaller",
+        icon: "window-positions/makeSmallerTemplate.png",
+        description: "Decrease the size of the focused window",
+      },
+    ],
+  },
+  other: {
+    title: "Other",
+    items: [
+      {
+        name: "center",
+        title: "Center",
+        icon: "window-positions/centerTemplate.png",
+        description: "Center the focused window on the screen",
       },
       {
         name: "upper-center",
@@ -724,16 +675,16 @@ export const commandGroups = {
         description: "Move the focused window to the upper-center",
       },
       {
-        name: "next-display-ratio",
-        title: "Next Display Ratio",
-        icon: "window-positions/nextDisplayCenterTemplate.png",
-        description: "Move the focused window to the next display, keeping ratio",
+        name: "restore",
+        title: "Restore",
+        icon: "window-positions/restoreTemplate.png",
+        description: "Restore the focused window to its previous size",
       },
       {
-        name: "prev-display-ratio",
-        title: "Previous Display Ratio",
-        icon: "window-positions/prevDisplayCenterTemplate.png",
-        description: "Move the focused window to the previous display, keeping ratio",
+        name: "fullscreen",
+        title: "Fullscreen",
+        icon: "window-positions/maximizeTemplate.png",
+        description: "Maximize the focused window to fullscreen",
       },
       {
         name: "stash-left",
@@ -795,6 +746,74 @@ export const commandGroups = {
         icon: "window-positions/stashAllButFront.png",
         description: "Stash all windows except the front",
       },
+    ],
+  },
+  multipleWindows: {
+    title: "Multiple Windows",
+    items: [
+      {
+        name: "app-next-display",
+        title: "App Next Display",
+        icon: "window-positions/nextDisplayTemplate.png",
+        description: "Move the application to the next display",
+      },
+      {
+        name: "app-prev-display",
+        title: "App Previous Display",
+        icon: "window-positions/prevDisplayTemplate.png",
+        description: "Move the application to the previous display",
+      },
+      {
+        name: "app-left-half",
+        title: "App Left Half",
+        icon: "window-positions/leftHalfTemplate.png",
+        description: "Resize the application to the left half of the screen",
+      },
+      {
+        name: "app-right-half",
+        title: "App Right Half",
+        icon: "window-positions/rightHalfTemplate.png",
+        description: "Resize the application to the right half of the screen",
+      },
+    ],
+  },
+};
+
+// The following commands did not have an icon template, so they've been omitted for now:
+export const actionsWithMissingIcons: CommandGroups<RectangleProAction> = {
+  other: {
+    title: "Other",
+    items: [
+      {
+        name: "last",
+        title: "Last",
+        icon: "",
+        description: "Select the last window",
+      },
+      {
+        name: "close",
+        title: "Close",
+        icon: "",
+        description: "Close the focused window",
+      },
+      {
+        name: "minimize",
+        title: "Minimize",
+        icon: "",
+        description: "Minimize the focused window",
+      },
+      {
+        name: "quit-app",
+        title: "Quit App",
+        icon: "",
+        description: "Quit the application",
+      },
+      {
+        name: "hide-app",
+        title: "Hide App",
+        icon: "",
+        description: "Hide the application",
+      },
       {
         name: "reflow-pin",
         title: "Reflow Pin",
@@ -803,6 +822,39 @@ export const commandGroups = {
       },
     ],
   },
-} as const satisfies CommandGroups;
-
-// The following commands did not have an icon template, so they've been omitted for now:
+  multipleWindows: {
+    title: "Multiple Windows",
+    items: [
+      {
+        name: "reveal-desktop-edge",
+        title: "Reveal Desktop Edge",
+        icon: "",
+        description: "Reveal the desktop edge",
+      },
+      {
+        name: "tile-2x2",
+        title: "Tile 2x2",
+        icon: "",
+        description: "Tile windows in a 2x2 grid",
+      },
+      {
+        name: "tile-2x3",
+        title: "Tile 2x3",
+        icon: "",
+        description: "Tile windows in a 2x3 grid",
+      },
+      {
+        name: "cascade-all",
+        title: "Cascade All",
+        icon: "",
+        description: "Cascade all windows",
+      },
+      {
+        name: "cascade-app",
+        title: "Cascade App",
+        icon: "",
+        description: "Cascade application windows",
+      },
+    ],
+  },
+};

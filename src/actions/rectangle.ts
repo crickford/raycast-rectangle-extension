@@ -1,4 +1,4 @@
-import { CommandGroups } from "..";
+import { CommandGroups } from "./interface";
 
 // source of truth, taken from https://github.com/rxhanson/Rectangle?tab=readme-ov-file#execute-an-action-by-url
 const actions = [
@@ -70,7 +70,7 @@ const actions = [
 
 export type RectangleAction = (typeof actions)[number];
 
-export const commandGroups = {
+export const commandGroups: CommandGroups<RectangleAction> = {
   halves: {
     title: "Halves",
     items: [
@@ -330,7 +330,7 @@ export const commandGroups = {
       },
     ],
   },
-} as const satisfies CommandGroups;
+};
 
 // The following commands did not have an icon template, so they've been omitted for now:
 // 'specified',

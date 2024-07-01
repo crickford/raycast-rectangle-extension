@@ -10,19 +10,15 @@ import {
   ActionPanel,
 } from "@raycast/api";
 import { ensureRectangleIsInstalled } from "./utils/checkInstall";
+import { CommandGroups } from "./actions/interface";
 import { RectangleAction, commandGroups as rectangleCommandGroups } from "./actions/rectangle";
 import { RectangleProAction, commandGroups as rectangleProCommandGroups } from "./actions/rectangle-pro";
 import { useEffect, useState } from "react";
 
-export type CommandGroups = {
-  [key: string]: {
-    title: string;
-    items: { name: RectangleAction | RectangleProAction; title: string; icon: string; description: string }[];
-  };
-};
+type AllCommandGroups = CommandGroups<RectangleAction | RectangleProAction>
 
 export default function Command() {
-  const [commandGroups, setCommandGroups] = useState<CommandGroups>(rectangleCommandGroups);
+  const [commandGroups, setCommandGroups] = useState<AllCommandGroups>(rectangleCommandGroups);
 
   useEffect(() => {
     ensureRectangleIsInstalled().then((detectionResult) => {
