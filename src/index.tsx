@@ -10,10 +10,32 @@ import {
   ActionPanel,
 } from "@raycast/api";
 import { ensureRectangleIsInstalled } from "./utils/checkInstall";
-import { RectangleAction, commandGroups } from "./actions/rectangle";
+import { RectangleAction, commandGroups as rectangleCommandGroups } from "./actions/rectangle";
+import { RectangleProAction, commandGroups as rectangleProCommandGroups } from "./actions/rectangle-pro";
+import { useEffect, useState } from "react";
+
+export type CommandGroups = {
+  [key: string]: {
+    title: string;
+    items: { name: RectangleAction | RectangleProAction; title: string; icon: string; description: string }[];
+  };
+};
 
 export default function Command() {
-  ensureRectangleIsInstalled();
+  const [commandGroups, setCommandGroups] = useState<CommandGroups>(rectangleCommandGroups);
+
+  useEffect(() => {
+    ensureRectangleIsInstalled().then((detectionResult) => {
+      if (detectionResult === "rectangle-pro") {
+        setCommandGroups(rectangleProCommandGroups);
+      } else if (detectionResult === "rectangle") {
+        setCommandGroups(rectangleCommandGroups);
+      } else {
+        // Handle cases where Rectangle is not installed or detection failed
+        // TODO: Add a "Download Rectangle" action to the command group
+      }
+    });
+  }, []);
 
   return (
     <Grid inset={Grid.Inset.Medium} searchBarPlaceholder="Find a Rectangle action">
@@ -46,7 +68,7 @@ export default function Command() {
   );
 }
 
-export const buildCommand = (action: RectangleAction) => async () => {
+export const buildCommand = (action: RectangleAction | RectangleProAction) => async () => {
   const installedVersion = await ensureRectangleIsInstalled();
 
   // bail out early if Rectangle is not found

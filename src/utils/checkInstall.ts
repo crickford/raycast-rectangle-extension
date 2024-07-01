@@ -1,6 +1,6 @@
 import { getApplications, showToast, Toast, open } from "@raycast/api";
 
-type DetectedInstallation = "rectangle" | "rectangle-pro" | "none";
+export type DetectedInstallation = "rectangle" | "rectangle-pro" | "none";
 
 async function detectInstallation(): Promise<DetectedInstallation> {
   const applications = await getApplications();
