@@ -7,7 +7,7 @@ async function detectInstallation(): Promise<DetectedInstallation> {
   if (applications.some(({ bundleId }) => bundleId === "com.knollsoft.Hookshot")) {
     return "rectangle-pro";
   } else if (applications.some(({ bundleId }) => bundleId === "com.knollsoft.Rectangle")) {
-    return "rectangle-pro";
+    return "rectangle";
   }
   return "none";
 }

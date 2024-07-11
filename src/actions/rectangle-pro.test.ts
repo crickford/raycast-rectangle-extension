@@ -1,5 +1,6 @@
 import { expect, test } from "vitest";
 import { commandGroups, actionsWithMissingIcons, actions } from "./rectangle-pro";
+import { actions as rectangleActions } from "./rectangle";
 import { readdirSync } from "fs";
 
 test("All actions with icons are supported", () => {
@@ -73,6 +74,23 @@ test("All expected icons used", () => {
   ];
 
   expect(new Set([...referencedIcons, ...knownUnusedIcons])).toEqual(iconFiles);
+});
+
+test("all rectangle actions are supported when using rectangle pro", () => {
+  // these actions are known to be unsupported by rectangle pro
+  const knownMissingActions = new Set(["specified", "tile-all", "reverse-all"]);
+
+  const detectedMissingActions = new Set<string>();
+
+  const proActions = new Set<string>(actions);
+
+  for (const action of rectangleActions) {
+    if (!proActions.has(action)) {
+      detectedMissingActions.add(action);
+    }
+  }
+
+  expect(detectedMissingActions).toEqual(knownMissingActions);
 });
 
 // test("All large icons used", () => {
