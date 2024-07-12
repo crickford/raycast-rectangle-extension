@@ -20,6 +20,10 @@ test("All actions with icons are supported", () => {
 
   const allActionsExceptThoseMissingIcons = new Set(actions.filter((action) => !missingIcons.has(action)));
 
+  // `fullscreen` is not working as of 7/12/2024 (see Rectangle Pro discussion: https://github.com/rxhanson/RectanglePro-Community/issues/463),
+  // so the corresponding action has been commented out in src/actions/rectangle-pro.ts
+  allActionsExceptThoseMissingIcons.delete("fullscreen");
+
   expect(supportedActions).toEqual(allActionsExceptThoseMissingIcons);
 });
 
